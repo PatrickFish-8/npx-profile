@@ -8,9 +8,10 @@ import inquirer from 'inquirer'
 import Enquirer from 'enquirer'
 import open from 'open'
 import terminalImage from 'terminal-image';
+import got from 'got';
 
 
-const mountains = await got("")
+const mountains = await got("https://github.com/PatrickFish-8/npx-profile/blob/master/assets/mountains.jpg?raw=true").buffer();
 
 clear();
 const data = {
@@ -63,7 +64,7 @@ const options = {
             name: '| beautiful',
             value: async () => {
                 try {
-                    console.log(await terminalImage.file('./assets/mountains.jpg', {width: '100%'}));
+                    console.log(await terminalImage.buffer(mountains, {width: '100%'}));
                     console.log('Isn\'t that a nice view?')
                 } catch (err) {
                     console.log(err);
