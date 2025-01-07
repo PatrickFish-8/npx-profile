@@ -25,10 +25,10 @@
     "enquirer": "^2.3.6",
     "got": "^13.0.0",
     "inquirer": "^9.2.7",
-    "node-fetch": "^3.3.1",
+    "node-fetch": "^3.3.2",
     "open": "^9.1.0",
-    "play-sound": "^1.1.5",
-    "terminal-image": "^2.0.0",
+    "play-sound": "^1.1.6",
+    "terminal-image": "^3.1.1",
     "terminal-kit": "^3.0.0",
     "username": "^6.0.0"
   }

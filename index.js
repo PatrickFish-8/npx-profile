@@ -10,14 +10,25 @@ import open from 'open'
 import terminalImage from 'terminal-image';
 import got from 'got';
 import playSound from 'play-sound';
+import fetch from 'node-fetch';
 
 
 const mountains = await got("https://github.com/PatrickFish-8/npx-profile/blob/master/assets/mountains.jpg?raw=true").buffer();
+const song = await fetch('https://raw.githubusercontent.com/PatrickFish-8/npx-profile/master/assets/the-smashing-pumpkins-1979.mp3');
+
+var audio;
+process.stdin.resume();
+function exitHandler() {
+    if (audio) audio.kill();
+    process.exit();
+}
+process.on('exit', exitHandler);
+process.on('SIGINT', exitHandler);
 
 clear();
 
 const data = {
-    name: chalk.bold.green("@pfish"),
+    name: chalk.bold.hex('#ADA7C9')("@pfish"),
     github: chalk.hex('#787878')("https://github.com/PatrickFish-8"),
     npx: chalk.hex('#787878')("npx pfish"),
     email: chalk.hex('#787878')("patrickfish10@icloud.com"),
@@ -88,7 +99,11 @@ const options = {
             name: '| song',
             value: async () => {
                 try {
-
+                    const player = playSound();
+                    audio = player.play(song, function(err){
+                        if (err && !err.killed) throw err;
+                    console.log("I love this song.");
+                    });
                 } catch (err) {
                     console.log(err);
                 }
