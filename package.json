@@ -1,6 +1,6 @@
 {
   "name": "pfish",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "my business card",
   "main": "index.js",
   "type": "module",
@@ -26,10 +26,14 @@
     "got": "^13.0.0",
     "inquirer": "^9.2.7",
     "node-fetch": "^3.3.2",
+    "node-mpv": "^1.5.0",
     "open": "^9.1.0",
+    "path": "^0.12.7",
     "play-sound": "^1.1.6",
+    "require": "^2.4.20",
     "terminal-image": "^3.1.1",
     "terminal-kit": "^3.0.0",
+    "url": "^0.11.4",
     "username": "^6.0.0"
   }
 }

@@ -12,18 +12,8 @@ import got from 'got';
 import playSound from 'play-sound';
 import fetch from 'node-fetch';
 
-
 const mountains = await got("https://github.com/PatrickFish-8/npx-profile/blob/master/assets/mountains.jpg?raw=true").buffer();
-const song = await fetch('https://raw.githubusercontent.com/PatrickFish-8/npx-profile/master/assets/the-smashing-pumpkins-1979.mp3');
 
-var audio;
-process.stdin.resume();
-function exitHandler() {
-    if (audio) audio.kill();
-    process.exit();
-}
-process.on('exit', exitHandler);
-process.on('SIGINT', exitHandler);
 
 clear();
 
@@ -74,7 +64,7 @@ const options = {
             }
         },
         {
-            name: '| beautiful view',
+            name: '| views',
             value: async () => {
                 try {
                     console.log(await terminalImage.buffer(mountains, {width: '100%'}));
@@ -89,7 +79,7 @@ const options = {
             value: async () => {
                 try {
                     open("https://www.youtube.com/watch?v=5nxY9rMaE50&ab_channel=Bara");
-                    console.log("what the hell is wrong with this cat??");
+                    console.log("what is wrong with this cat??");
                 } catch (err) {
                     console.log(err);
                 }
@@ -99,11 +89,27 @@ const options = {
             name: '| song',
             value: async () => {
                 try {
+                    console.log("playing 1979 ...");
+                    console.log();
                     const player = playSound();
-                    audio = player.play(song, function(err){
+                    let audio = player.play( './assets/1979.mp3', function(err){
                         if (err && !err.killed) throw err;
-                    console.log("I love this song.");
                     });
+
+                    let e = await Enquirer.prompt({
+                        type: "toggle",
+                        name: "opinion",
+                        message: "do you like this song?",
+                        default: true
+                    });
+
+                    if(e.opinion == true) {
+                        console.log("i like this song too!");
+                    } else {
+                        console.log("i'm sorry you don't like this song. it's one of my favorites.");
+                        audio.kill();
+                    }
+                    console.log();
                 } catch (err) {
                     console.log(err);
                 }
