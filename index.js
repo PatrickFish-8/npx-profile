@@ -102,8 +102,7 @@ const options = {
             value: async () => {
                 try {
                     open("https://www.youtube.com/watch?v=PKVQ5pugma0");
-                    console.log("i love this video.  i am a big skier and the tricks \
-                        that these guys do are super impressive.");
+                    console.log("i love this video.  i am a big skier and the \ntricks that these guys do are super impressive.");
                 } catch (err) {
                     console.log(err);
                 }
