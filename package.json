@@ -1,6 +1,6 @@
 {
   "name": "pfish",
-  "version": "1.0.9",
+  "version": "1.1.1",
   "description": "my business card",
   "main": "index.js",
   "type": "module",
@@ -9,7 +9,8 @@
   },
   "files": [
     "index.js",
-    "assets/mountains.jpg"
+    "assets/mountains.jpg",
+    "assets/1979.mp3"
   ],
   "scripts": {
     "setup": "npm install",

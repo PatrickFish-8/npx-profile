@@ -13,6 +13,7 @@ import playSound from 'play-sound';
 import fetch from 'node-fetch';
 
 const mountains = await got("https://github.com/PatrickFish-8/npx-profile/blob/master/assets/mountains.jpg?raw=true").buffer();
+const mountains2 = await got("https://github.com/PatrickFish-8/npx-profile/blob/master/assets/mountains.jpg?raw=true").buffer();
 
 
 clear();
@@ -64,22 +65,35 @@ const options = {
             }
         },
         {
-            name: '| views',
+            name: '| mountains',
             value: async () => {
                 try {
                     console.log(await terminalImage.buffer(mountains, {width: '100%'}));
-                    console.log('Isn\'t that a nice view?')
+                    console.log('isn\'t that a nice view?')
+                    let e = await Enquirer.prompt({
+                        type: "toggle",
+                        name: "opinion",
+                        message: "do you want to see another view?",
+                        default: true
+                    });
+                    if (e.opinion == true) {
+                        console.log(await terminalImage.buffer(mountains2, {width: '100%'}));
+                        console.log("this one is a really cool picture too!")
+                    } else {
+                        return;
+                    }
                 } catch (err) {
                     console.log(err);
                 }
             }
         },
         {
-            name: '| cat',
+            name: '| magma',
             value: async () => {
                 try {
-                    open("https://www.youtube.com/watch?v=5nxY9rMaE50&ab_channel=Bara");
-                    console.log("what is wrong with this cat??");
+                    open("https://www.youtube.com/watch?v=PKVQ5pugma0");
+                    console.log("i love this video.  i am a big skier and the tricks \
+                        that these guys do are super impressive.");
                 } catch (err) {
                     console.log(err);
                 }
@@ -90,10 +104,9 @@ const options = {
             value: async () => {
                 try {
                     console.log("playing 1979 ...");
-                    console.log();
                     const player = playSound();
                     let audio = player.play( './assets/1979.mp3', function(err){
-                        if (err && !err.killed) throw err;
+                        if (err && !err.killed) throw err
                     });
 
                     let e = await Enquirer.prompt({
@@ -109,7 +122,6 @@ const options = {
                         console.log("i'm sorry you don't like this song. it's one of my favorites.");
                         audio.kill();
                     }
-                    console.log();
                 } catch (err) {
                     console.log(err);
                 }
