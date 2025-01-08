@@ -12,9 +12,19 @@ import got from 'got';
 import playSound from 'play-sound';
 import fetch from 'node-fetch';
 
-const mountains = await got("https://github.com/PatrickFish-8/npx-profile/blob/master/assets/mountains.jpg?raw=true").buffer();
-const mountains2 = await got("https://github.com/PatrickFish-8/npx-profile/blob/master/assets/mountains.jpg?raw=true").buffer();
+// import fs from 'fs'; 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import * as path from 'path';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+let songPath = "./assets/1979.mp3";
+let songFile = path.resolve(__dirname, `${songPath}`);
+
+const mountains = await got("https://github.com/PatrickFish-8/npx-profile/blob/master/assets/mountains.jpg?raw=true").buffer();
+const mountains2 = await got("https://github.com/PatrickFish-8/npx-profile/blob/master/assets/mountains2.jpg?raw=true").buffer();
 
 clear();
 
@@ -73,7 +83,7 @@ const options = {
                     let e = await Enquirer.prompt({
                         type: "toggle",
                         name: "opinion",
-                        message: "do you want to see another view?",
+                        message: "do you want to see another mountain?",
                         default: true
                     });
                     if (e.opinion == true) {
@@ -105,7 +115,7 @@ const options = {
                 try {
                     console.log("playing 1979 ...");
                     const player = playSound();
-                    let audio = player.play( './assets/1979.mp3', function(err){
+                    let audio = player.play(songFile, function(err){
                         if (err && !err.killed) throw err
                     });
 
